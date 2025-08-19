@@ -3,3 +3,8 @@ pandas
 streamlit-cookies-controller
 geopy
 streamlit-geolocation
+numpy
+opencv-python
+av
+streamlit-webrtc
+qrcode
