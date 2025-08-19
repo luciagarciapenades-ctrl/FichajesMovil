@@ -2,9 +2,12 @@ import streamlit as st
 import pandas as pd
 from datetime import datetime
 import os, sys
+
 ROOT_DIR = os.path.dirname(os.path.dirname(__file__))  # sube de /pages a la raíz
 if ROOT_DIR not in sys.path:
     sys.path.insert(0, ROOT_DIR)
+
+
 import login as login
 
 import sqlite3
@@ -20,7 +23,10 @@ import re
 
 
 
-BASE_DIR = st.secrets.get("DATA_DIR", os.path.join(os.path.dirname(__file__), "data"))
+IS_CLOUD = "/mount/src" in os.getcwd()
+DEFAULT_DATA_DIR = "/mount/data" if IS_CLOUD else os.path.join(os.path.dirname(__file__), "data")
+
+BASE_DIR = st.secrets.get("DATA_DIR", DEFAULT_DATA_DIR)
 os.makedirs(BASE_DIR, exist_ok=True)
 
 DB_FICHAJES = os.path.join(BASE_DIR, "fichajes.db")
@@ -36,7 +42,7 @@ login.generarLogin(archivo)
 
 
 # ======== Config DB (SQLite) ========
-DB_FILE = cfg.FICHAJES_DB
+DB_FILE = DB_FICHAJES
 TABLE = "fichajes"
 
 def get_conn():

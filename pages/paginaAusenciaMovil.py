@@ -6,7 +6,10 @@ import sqlite3
 from datetime import datetime, date, timedelta
 import config as cfg
 
-BASE_DIR = st.secrets.get("DATA_DIR", os.path.join(os.path.dirname(__file__), "data"))
+IS_CLOUD = "/mount/src" in os.getcwd()
+DEFAULT_DATA_DIR = "/mount/data" if IS_CLOUD else os.path.join(os.path.dirname(__file__), "data")
+
+BASE_DIR = st.secrets.get("DATA_DIR", DEFAULT_DATA_DIR)
 os.makedirs(BASE_DIR, exist_ok=True)
 
 DB_FICHAJES = os.path.join(BASE_DIR, "fichajes.db")
@@ -19,7 +22,7 @@ login.generarLogin(archivo)
 
 
 # ======== Config DB (SQLite) ========
-DB_FILE = cfg.RRHH_DB
+DB_FILE = DB_RRHH
 VAC_TABLE = "vacaciones"
 BAJ_TABLE = "bajas"
 

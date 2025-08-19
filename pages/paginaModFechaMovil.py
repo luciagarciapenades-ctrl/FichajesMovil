@@ -6,7 +6,10 @@ import pandas as pd
 import streamlit as st
 import login as login
 
-BASE_DIR = st.secrets.get("DATA_DIR", os.path.join(os.path.dirname(__file__), "data"))
+IS_CLOUD = "/mount/src" in os.getcwd()
+DEFAULT_DATA_DIR = "/mount/data" if IS_CLOUD else os.path.join(os.path.dirname(__file__), "data")
+
+BASE_DIR = st.secrets.get("DATA_DIR", DEFAULT_DATA_DIR)
 os.makedirs(BASE_DIR, exist_ok=True)
 
 DB_FICHAJES = os.path.join(BASE_DIR, "fichajes.db")
@@ -18,7 +21,7 @@ archivo = __file__.split("\\")[-1]   # nombre del archivo actual
 login.generarLogin(archivo)
 
 
-DB_FILE = os.path.join(BASE_DIR, "fichajes.db")
+DB_FILE = DB_FICHAJES
 TABLE = "fichajes"
 
 DIAS_ES = ["Lunes","Martes","Miércoles","Jueves","Viernes","Sábado","Domingo"]
