@@ -1,0 +1,4 @@
+usuario,nombre,clave,rol,superior,dias_vacaciones
+admin,admin,admin,admin
+ursDavid,David Calero,David123,empleado,admin
+

@@ -1,0 +1,5 @@
+pagina,nombre,roles,icono
+inicio.py,Inicio,admin|empleado,home
+pages/paginaFichajeMovil.py,Fichajes,admin|empleado,event
+pages/paginaAusenciaMovil.py,Ausencia,admin|empleado,business_center
+pages/paginaModFechaMovil.py,Modificaciones de fechas,admin|empleado,work_update
