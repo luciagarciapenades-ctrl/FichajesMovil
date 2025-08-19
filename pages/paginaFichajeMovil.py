@@ -1,8 +1,12 @@
 import streamlit as st
 import pandas as pd
 from datetime import datetime
+import os, sys
+ROOT_DIR = os.path.dirname(os.path.dirname(__file__))  # sube de /pages a la raíz
+if ROOT_DIR not in sys.path:
+    sys.path.insert(0, ROOT_DIR)
 import login as login
-import os
+
 import sqlite3
 from datetime import datetime, timezone
 import config as cfg
