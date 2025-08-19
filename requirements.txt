@@ -8,3 +8,4 @@ opencv-python
 av
 streamlit-webrtc
 qrcode
+opencv-python
